@@ -1,5 +1,5 @@
-import restify from 'restify';
-import * as routes from './routes';
+const restify = require('restify');
+const routes = require('./routes');
 
 let app = restify.createServer();
 
