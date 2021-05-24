@@ -4,6 +4,11 @@ pipeline {
   tools {
       go 'go1.16.4'
   }
+  environment {
+    GO114MODULE = 'on'
+    CGO_ENABLED = 0
+    GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
+  }
   stages {
     stage('Pre Test') {
       steps {
@@ -11,7 +16,12 @@ pipeline {
           sh 'go version'
           sh '''
           cd ./cidr_convert_api/go/
-          go get -u golang.org/x/lint/golint'''
+          go get -u golang.org/x/lint/golint
+          '''
+          sh '''
+            go get github.com/Pepegasca/goop \
+            && goop install
+          '''
       }
     }
     stage('Build2') {
