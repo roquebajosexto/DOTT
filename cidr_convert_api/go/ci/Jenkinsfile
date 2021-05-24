@@ -3,11 +3,13 @@ pipeline {
   stages {
     stage('Pre Test') {
       steps {
-        echo 'Installing dependencies'
-        sh 'go version'
-        sh '''
-        cd ./cidr_convert_api/go/
-        go get -u golang.org/x/lint/golint'''
+        withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
+          echo 'Installing dependencies'
+          sh 'go version'
+          sh '''
+          cd ./cidr_convert_api/go/
+          go get -u golang.org/x/lint/golint'''
+        }
       }
     }
     stage('Build2') {
@@ -21,6 +23,7 @@ pipeline {
 
     stage('Test') {
       steps {
+        withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
           echo 'Running vetting'
           sh '''
           cd ./cidr_convert_api/go/
@@ -35,6 +38,7 @@ pipeline {
           cd ./cidr_convert_api/go/
           go test
           '''
+        }
       }
     }
   }
