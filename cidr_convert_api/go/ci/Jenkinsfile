@@ -19,9 +19,13 @@ pipeline {
           go get -u golang.org/x/lint/golint
           '''
           sh '''
-            go get github.com/Pepegasca/goop \
-            && goop install
+            go get github.com/Pepegasca/goop
           '''
+          withEnv(["PATH+GO=${GOPATH}/bin"]) {
+            sh '''
+            goop install
+            '''
+          }
       }
     }
     stage('Build2') {
