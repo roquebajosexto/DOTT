@@ -21,15 +21,15 @@ pipeline {
           sh '''
             go get github.com/Pepegasca/goop
           '''
-          withEnv(["PATH+GO=${GOPATH}/bin"]) {
-            sh '''
-            pwd
-            ls
-            cd ./cidr_convert_api/go/
-            chmod -R 777 .
-            goop install
-            '''
-          }
+          // withEnv(["PATH+GO=${GOPATH}/bin"]) {
+          //   sh '''
+          //   pwd
+          //   ls
+          //   cd ./cidr_convert_api/go/
+          //   chmod -R 777 .
+          //   goop install
+          //   '''
+          // }
       }
     }
     stage('Build2') {
@@ -47,11 +47,11 @@ pipeline {
           sh '''
           cd ./cidr_convert_api/go/
           go vet .'''
-          echo 'Running test'
-          sh '''
-          cd ./cidr_convert_api/go/
-          go test
-          '''
+          // echo 'Running test'
+          // sh '''
+          // cd ./cidr_convert_api/go/
+          // go test
+          // '''
       }
     }
   }
