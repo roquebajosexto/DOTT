@@ -3,6 +3,8 @@ pipeline {
   stages {
     stage('Build2') {
       steps {
+        sh 'pwd'
+        sh 'ls'
         sh 'cd ./cidr_convert_api/go/'
         sh 'sudo docker-compose up -d --build'
       }
