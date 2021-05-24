@@ -12,18 +12,29 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Compiling and building'
-        sh 'go build'
+        sh '''
+        cd ./cidr_convert_api/go/
+        go build
+        '''
       }
     }
 
     stage('Test') {
       steps {
           echo 'Running vetting'
-          sh 'go vet .'
+          sh '''
+          cd ./cidr_convert_api/go/
+          go vet .'''
           echo 'Running linting'
-          sh 'golint .'
+          sh '''
+          cd ./cidr_convert_api/go/
+          golint .
+          '''
           echo 'Running test'
-          sh 'cd test && go test -v'
+          sh '''
+          cd ./cidr_convert_api/go/
+          go test
+          '''
       }
     }
   }
