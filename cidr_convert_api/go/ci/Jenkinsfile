@@ -1,9 +1,9 @@
 pipeline {
   agent any
 
-    tools {
-        go 'go1.16.4'
-    }
+  tools {
+      go 'go1.16.4'
+  }
   stages {
     stage('Pre Test') {
       steps {
@@ -27,7 +27,6 @@ pipeline {
 
     stage('Test') {
       steps {
-        withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
           echo 'Running vetting'
           sh '''
           cd ./cidr_convert_api/go/
@@ -42,7 +41,6 @@ pipeline {
           cd ./cidr_convert_api/go/
           go test
           '''
-        }
       }
     }
   }
