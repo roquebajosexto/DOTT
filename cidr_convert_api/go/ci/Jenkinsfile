@@ -21,37 +21,27 @@ pipeline {
           sh '''
             go get github.com/Pepegasca/goop
           '''
-          // withEnv(["PATH+GO=${GOPATH}/bin"]) {
-          //   sh '''
-          //   pwd
-          //   ls
-          //   cd ./cidr_convert_api/go/
-          //   chmod -R 777 .
-          //   goop install
-          //   '''
-          // }
       }
     }
-    stage('Build2') {
-      steps {
-        sh '''
-        cd ./cidr_convert_api/go/
-        sudo docker-compose up -d --build
-        '''
-      }
-    }
-
     stage('Test') {
       steps {
           echo 'Running vetting'
           sh '''
           cd ./cidr_convert_api/go/
           go vet .'''
-          echo 'Running test'
+          echo 'Running Unit testing'
           sh '''
           cd ./cidr_convert_api/go/
           go test
           '''
+      }
+    }
+    stage('deploy') {
+      steps {
+        sh '''
+        cd ./cidr_convert_api/go/
+        sudo docker-compose up -d --build
+        '''
       }
     }
   }
