@@ -1,0 +1,14 @@
+pipeline {
+	agent any
+		stages {
+			stage('One') {
+				steps {
+					sh '''
+						echo "Step One"
+            cd ./cidr_convert_api/go/
+            sudo docker-compose up -d --build
+					'''
+				}
+			}
+		}
+}
