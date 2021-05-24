@@ -33,7 +33,6 @@ func TestValidIpv4(t *testing.T) {
 	assert.Equal(true, ipv4Validation("255.255.255.255"))
 }
 
-
 func TestInvalidMaskToCidr(t *testing.T) {
 	assert := assert.New(t)
 
@@ -50,7 +49,6 @@ func TestInvalidCidrToMask(t *testing.T) {
 	assert.Equal("Invalid", cidrToMask("255.255.255"))
 	assert.Equal("Invalid", cidrToMask("11.0.0.0"))
 }
-
 
 func TestInvalidIpv4(t *testing.T) {
 	assert := assert.New(t)
