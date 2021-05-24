@@ -1,20 +1,20 @@
 pipeline {
   agent any
   stages {
+    stage('Pre Test') {
+      steps {
+        echo 'Installing dependencies'
+        sh 'go version'
+        sh '''
+        cd ./cidr_convert_api/go/
+        go get -u golang.org/x/lint/golint'''
+      }
+    }
     stage('Build2') {
       steps {
         sh '''
         cd ./cidr_convert_api/go/
         sudo docker-compose up -d --build
-        '''
-      }
-    }
-    stage('Build') {
-      steps {
-        echo 'Compiling and building'
-        sh '''
-        cd ./cidr_convert_api/go/
-        go build
         '''
       }
     }
