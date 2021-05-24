@@ -23,6 +23,8 @@ pipeline {
           '''
           withEnv(["PATH+GO=${GOPATH}/bin"]) {
             sh '''
+            pwd
+            ls
             goop install
             '''
           }
