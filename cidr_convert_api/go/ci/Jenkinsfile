@@ -6,6 +6,7 @@ pipeline {
         sh 'pwd'
         sh 'ls'
         sh 'cd ./cidr_convert_api/go/'
+        sh 'ls'
         sh 'sudo docker-compose up -d --build'
       }
     }
