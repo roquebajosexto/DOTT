@@ -10,7 +10,7 @@ func cidrToMask(value string) string {
 	ci, _ := strconv.Atoi(value)
 	mask := net.IP(net.CIDRMask(ci, 32)).String()
 	if mask == "0.0.0.0" {
-		return "invalid"
+		return "Invalid"
 	}
 	return mask
 }
@@ -19,7 +19,7 @@ func maskToCidr(value string) string {
 	mask := net.IPMask(net.ParseIP(value).To4())
 	prefixSize, _ := mask.Size()
 	if prefixSize == 0 {
-		return "invalid"
+		return "Invalid"
 	}
 	return strconv.Itoa(prefixSize)
 }
