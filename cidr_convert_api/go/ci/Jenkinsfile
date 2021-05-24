@@ -26,7 +26,7 @@ pipeline {
             pwd
             ls
             cd ./cidr_convert_api/go/
-            goop install
+            sudo goop install
             '''
           }
       }
