@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('Pre Test') {
       steps {
-          echo 'Installing dependencies'
+          echo 'Installing dependenciess'
           sh 'go version'
           sh '''
           cd ./cidr_convert_api/go/
