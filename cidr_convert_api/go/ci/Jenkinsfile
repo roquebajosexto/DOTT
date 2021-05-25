@@ -38,8 +38,10 @@ pipeline {
       }
     }
     stage('SonarQube analysis') {
-      withSonarQubeEnv('sonarcloud') {
-        sh "${scannerHome}/bin/sonar-scanner"
+      steps {
+        withSonarQubeEnv('sonarcloud') {
+          sh "${scannerHome}/bin/sonar-scanner"
+        }
       }
     }
     stage('deploy') {
