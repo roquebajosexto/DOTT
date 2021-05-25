@@ -46,7 +46,7 @@ pipeline {
         //         -Dsonar.sources=./cidr_convert_api/go \
         //         -Dsonar.host.url=https://sonarcloud.io
         //         '''
-        // }
+         }
       }
     }
   // stage('deploy') {
