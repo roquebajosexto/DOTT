@@ -38,7 +38,7 @@ pipeline {
     }
     stage('SonarQube analysis') {
       steps {
-        withSonarQubeEnv('sonarcloud', envOnly: true) {
+        withSonarQubeEnv('sonarcloud') {
           echo "${ env.SONAR_HOST_URL }"
         }
       }
