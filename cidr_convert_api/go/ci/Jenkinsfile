@@ -64,17 +64,17 @@ pipeline {
       }
     }
     stage('deploy') {
-      //   steps {
-      //     sh '''
-      //   cd ./cidr_convert_api/go/
-      //   sudo docker-compose up -d --build
-      //   '''
-      //   }
-      kubernetesDeploy(
+        steps {
+        //     sh '''
+        //   cd ./cidr_convert_api/go/
+        //   sudo docker-compose up -d --build
+        //   '''
+        kubernetesDeploy(
                     configs: 'cidr_convert_api/go/goms.yml',
                     kubeconfigId: 'K8S',
                     enableConfigSubstitution: true
                     )
+        }
     }
   }
 }
