@@ -46,7 +46,7 @@ pipeline {
           sh '''${scannerHome}/bin/sonar-scanner \
                 -Dsonar.organization=roquebajosexto \
                 -Dsonar.projectKey=roquebajosexto_DOTT \
-                -Dsonar.sources=./cidr_convert_api/go \
+                -Dsonar.sources=./cidr_convert_api/go/ \
                 -Dsonar.host.url=https://sonarcloud.io
 
          '''
