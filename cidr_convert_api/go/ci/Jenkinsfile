@@ -2,7 +2,6 @@ pipeline {
   agent any
   tools {
       go 'go1.16.4'
-      scannerHome 'sonarqube4.0'
   }
   environment {
     GO114MODULE = 'on'
@@ -38,12 +37,14 @@ pipeline {
     }
     stage('SonarQube analysis') {
       steps {
-        script {
-            def scannerHome = tool 'sonarqube'
-            withSonarQubeEnv('sonarqube') {
-              echo "${ env.SONAR_HOST_URL }"
-              sh "${scannerHome}/bin/sonar-scanner"
-            }
+        withSonarQubeEnv('sonarqube') {
+          echo "${ env.SONAR_HOST_URL }"
+          sh '''$SCANNER_HOME/bin/sonar-scanner \
+                -Dsonar.organization=roquebajosexto \
+                -Dsonar.projectKey=roquebajosexto_DOTT \
+                -Dsonar.sources=./cidr_convert_api/go \
+                -Dsonar.host.url=https://sonarcloud.io
+                '''
         }
       }
     }
