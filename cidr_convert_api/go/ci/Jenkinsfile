@@ -37,9 +37,9 @@ pipeline {
       }
     }
     stage('SonarQube analysis') {
-      def scannerHome = tool 'sonarqube4.0'
       steps {
         withSonarQubeEnv('sonarcloud') {
+          def scannerHome = tool 'sonarqube4.0'
           echo "${ env.SONAR_HOST_URL }"
           sh "${scannerHome}/bin/sonar-scanner"
         }
