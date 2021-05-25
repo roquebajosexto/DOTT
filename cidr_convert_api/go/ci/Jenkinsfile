@@ -37,7 +37,7 @@ pipeline {
     // }
     stage('SonarQube analysis') {
         environment {
-          scannerHome = '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar/bin/sonar-scanner'
+          scannerHome = '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar'
         }
       steps {
         withSonarQubeEnv('sonarcloud') {
