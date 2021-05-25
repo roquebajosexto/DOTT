@@ -36,12 +36,20 @@ pipeline {
     //   }
     // }
     stage('SonarQube analysis') {
+        environment {
+          scannerHome = '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar/bin/sonar-scanner'
+        }
       steps {
-        script {
-            scannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-            withSonarQubeEnv('sonarcloud') {
-                sh '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar/bin/sonar-scanner --version'
-            }
+        withSonarQubeEnv('sonarcloud') {
+          echo "${ env.SONAR_HOST_URL }"
+          echo "${ env.SCANNER_HOME }"
+          sh '''${scannerHome}/bin/sonar-scanner \
+                -Dsonar.organization=roquebajosexto \
+                -Dsonar.projectKey=roquebajosexto_DOTT \
+                -Dsonar.sources=./cidr_convert_api/go \
+                -Dsonar.host.url=https://sonarcloud.io
+
+         '''
         }
       }
     }
