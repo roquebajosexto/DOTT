@@ -36,6 +36,12 @@ pipeline {
           '''
       }
     }
+    stage('SonarQube analysis') {
+      def scannerHome = tool 'sonarqube'
+      withSonarQubeEnv('sonarcloud') {
+        sh "${scannerHome}/bin/sonar-scanner"
+      }
+    }
     stage('deploy') {
       steps {
         sh '''
