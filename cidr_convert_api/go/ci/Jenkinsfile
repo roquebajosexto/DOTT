@@ -58,7 +58,6 @@ pipeline {
         sh '''
       cd ./cidr_convert_api/go/
       sudo docker build . -t devops-roque
-      sudo docker push roquebajosexto/devops-roque
       sudo docker tag devops-roque roquebajosexto/devops-roque:lastest
       sudo docker push roquebajosexto/devops-roque:lastest
       '''
