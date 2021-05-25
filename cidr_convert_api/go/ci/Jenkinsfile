@@ -1,7 +1,7 @@
 pipeline {
   agent any
   tools {
-      go 'go1.16.4'
+    go 'go1.16.4'
   }
   environment {
     GO114MODULE = 'on'
@@ -14,8 +14,8 @@ pipeline {
           echo 'Installing dependenciess'
           sh 'go version'
           sh '''
-          cd ./cidr_convert_api/go/
-          go get -u golang.org/x/lint/golint
+            cd ./cidr_convert_api/go/
+            go get -u golang.org/x/lint/golint
           '''
           sh '''
             go get github.com/Pepegasca/goop
@@ -56,20 +56,26 @@ pipeline {
     stage('build') {
       steps {
         sh '''
-      cd ./cidr_convert_api/go/
-      sudo docker build . -t devops-roque
-      sudo docker tag devops-roque roquebajosexto/devops-roque:lastest
-      sudo docker push roquebajosexto/devops-roque:lastest
-      '''
+            cd ./cidr_convert_api/go/
+            sudo docker build . -t devops-roque
+            sudo docker tag devops-roque roquebajosexto/devops-roque:lastest
+            sudo docker push roquebajosexto/devops-roque:lastest
+          '''
+            withDockerRegistry([credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/']) {
+              script {
+                image = docker.build('roquebajosexto/devops-roque:lastest', 'devops-roque')
+                image.push()
+              }
+            }
       }
     }
-    stage('deploy') {
-      steps {
-        sh '''
-      cd ./cidr_convert_api/go/
-      sudo docker-compose up -d --build
-      '''
-      }
-    }
+  // stage('deploy') {
+  //   steps {
+  //     sh '''
+  //   cd ./cidr_convert_api/go/
+  //   sudo docker-compose up -d --build
+  //   '''
+  //   }
+  // }
   }
 }
