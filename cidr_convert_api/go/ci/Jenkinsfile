@@ -40,7 +40,7 @@ pipeline {
         script {
             scannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
             withSonarQubeEnv('sonarcloud') {
-                sh '${scannerHome}/bin/sonar-scanner --version'
+                sh '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar/bin/sonar-scanner --version'
             }
         }
       }
