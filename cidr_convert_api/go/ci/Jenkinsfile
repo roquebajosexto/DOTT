@@ -61,7 +61,7 @@ pipeline {
             sudo docker tag devops-roque roquebajosexto/devops-roque:lastest
             sudo docker push roquebajosexto/devops-roque:lastest
           '''
-            withDockerRegistry([credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/']) {
+            withDockerRegistry([credentialsId: 'dockerhub', url: 'https://docker.io']) {
               script {
                 image = docker.build('roquebajosexto/devops-roque:lastest', 'devops-roque')
                 image.push()
