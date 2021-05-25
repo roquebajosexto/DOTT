@@ -3,6 +3,7 @@ pipeline {
 
   tools {
       go 'go1.16.4'
+      scannerHome 'sonarqube'
   }
   environment {
     GO114MODULE = 'on'
@@ -37,7 +38,6 @@ pipeline {
       }
     }
     stage('SonarQube analysis') {
-      def scannerHome = tool 'sonarqube'
       withSonarQubeEnv('sonarcloud') {
         sh "${scannerHome}/bin/sonar-scanner"
       }
