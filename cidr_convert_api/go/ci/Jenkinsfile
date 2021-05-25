@@ -9,36 +9,37 @@ pipeline {
     GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
   }
   stages {
-    stage('Pre Test') {
-      steps {
-          echo 'Installing dependenciess'
-          sh 'go version'
-          sh '''
-          cd ./cidr_convert_api/go/
-          go get -u golang.org/x/lint/golint
-          '''
-          sh '''
-            go get github.com/Pepegasca/goop
-          '''
-      }
-    }
-    stage('Test') {
-      steps {
-          echo 'Running vetting'
-          sh '''
-          cd ./cidr_convert_api/go/
-          go vet .'''
-          echo 'Running Unit testing'
-          sh '''
-          cd ./cidr_convert_api/go/
-          go test
-          '''
-      }
-    }
+    // stage('Pre Test') {
+    //   steps {
+    //       echo 'Installing dependenciess'
+    //       sh 'go version'
+    //       sh '''
+    //       cd ./cidr_convert_api/go/
+    //       go get -u golang.org/x/lint/golint
+    //       '''
+    //       sh '''
+    //         go get github.com/Pepegasca/goop
+    //       '''
+    //   }
+    // }
+    // stage('Test') {
+    //   steps {
+    //       echo 'Running vetting'
+    //       sh '''
+    //       cd ./cidr_convert_api/go/
+    //       go vet .'''
+    //       echo 'Running Unit testing'
+    //       sh '''
+    //       cd ./cidr_convert_api/go/
+    //       go test
+    //       '''
+    //   }
+    // }
     stage('SonarQube analysis') {
       steps {
         withSonarQubeEnv('sonarqube') {
           echo "${ env.SONAR_HOST_URL }"
+          echo "${ env.$SCANNER_HOME }"
           sh '''$SCANNER_HOME/bin/sonar-scanner \
                 -Dsonar.organization=roquebajosexto \
                 -Dsonar.projectKey=roquebajosexto_DOTT \
@@ -48,13 +49,13 @@ pipeline {
         }
       }
     }
-    stage('deploy') {
-      steps {
-        sh '''
-        cd ./cidr_convert_api/go/
-        sudo docker-compose up -d --build
-        '''
-      }
-    }
+    // stage('deploy') {
+    //   steps {
+    //     sh '''
+    //     cd ./cidr_convert_api/go/
+    //     sudo docker-compose up -d --build
+    //     '''
+    //   }
+    // }
   }
 }
