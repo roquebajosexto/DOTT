@@ -53,6 +53,17 @@ pipeline {
         }
       }
     }
+    stage('build') {
+      steps {
+        sh '''
+      cd ./cidr_convert_api/go/
+      docker build -t devops-roque
+      docker push roquebajosexto/devops-roque
+      docker tag devops-roque roquebajosexto/devops-roque:lastest
+      docker push roquebajosexto/devops-roque:lastest
+      '''
+      }
+    }
     stage('deploy') {
       steps {
         sh '''
