@@ -3,7 +3,6 @@ pipeline {
 
   tools {
       go 'go1.16.4'
-      scannerHome 'sonarqube'
   }
   environment {
     GO114MODULE = 'on'
@@ -39,8 +38,8 @@ pipeline {
     }
     stage('SonarQube analysis') {
       steps {
-        withSonarQubeEnv('sonarcloud') {
-          sh "${scannerHome}/bin/sonar-scanner"
+        withSonarQubeEnv('sonarcloud', envOnly: true) {
+          echo "${ env.SONAR_HOST_URL }"
         }
       }
     }
