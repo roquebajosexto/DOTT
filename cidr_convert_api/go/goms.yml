@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: go-ms-container
-        image: roquebajosexto/devops-roque:latest
+        image: roquebajosexto/devops-roque
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
