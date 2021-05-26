@@ -31,7 +31,7 @@ pipeline {
           echo 'Running Unit testing'
           sh '''
           cd ./cidr_convert_api/go/
-          go test
+          go test -cover
           '''
       }
     }
@@ -71,8 +71,7 @@ pipeline {
         //   '''
         kubernetesDeploy(
                     configs: 'cidr_convert_api/go/goms.yml',
-                    kubeconfigId: 'K8S',
-                    enableConfigSubstitution: true
+                    kubeconfigId: 'K8S'
                     )
         }
     }
