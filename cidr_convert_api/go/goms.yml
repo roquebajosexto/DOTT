@@ -15,6 +15,7 @@ spec:
       containers:
       - name: go-ms-container
         image: roquebajosexto/devops-roque:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
 # service type loadbalancer
