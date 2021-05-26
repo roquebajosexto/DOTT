@@ -71,7 +71,8 @@ pipeline {
         //   '''
         kubernetesDeploy(
                     configs: 'cidr_convert_api/go/goms.yml',
-                    kubeconfigId: 'K8S'
+                    kubeconfigId: 'K8S',
+                    enableConfigSubstitution: true
                     )
         }
     }
