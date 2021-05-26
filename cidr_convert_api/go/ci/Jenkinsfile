@@ -31,7 +31,7 @@ pipeline {
           echo 'Running Unit testing'
           sh '''
           cd ./cidr_convert_api/go/
-          go test -cover
+          go test -cover -coverprofile=cover.out
           '''
       }
     }
