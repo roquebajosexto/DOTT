@@ -19,7 +19,7 @@ type Response struct {
 
 // Display all from the people var
 func routeGetHealth(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "OK")
+	fmt.Fprintf(w, "OKs")
 }
 
 // e.g. http://127.0.0.1:8000/cidr-to-mask?value=8
