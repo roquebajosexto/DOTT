@@ -50,6 +50,11 @@ pipeline {
         }
       }
     }
+    stage('Quality gate') {
+      steps {
+          waitForQualityGate abortPipeline: true
+      }
+    }
     stage('build') {
       steps {
         sh '''
@@ -58,11 +63,6 @@ pipeline {
             sudo docker tag devops-roque roquebajosexto/devops-roque
             sudo docker push roquebajosexto/devops-roque
           '''
-      }
-    }
-    stage('Quality gate') {
-      steps {
-          waitForQualityGate abortPipeline: true
       }
     }
     stage('deploy') {
