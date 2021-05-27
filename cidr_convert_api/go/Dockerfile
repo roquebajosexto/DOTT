@@ -1,4 +1,4 @@
-FROM golang:alpine3.13
+FROM golang:1.10-alpine
 
 ENV GOPATH=/go:/app
 RUN apk add --update git
