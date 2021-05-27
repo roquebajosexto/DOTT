@@ -41,14 +41,11 @@ pipeline {
     stage('SonarQube analysis') {
       steps {
         withSonarQubeEnv('sonarcloud') {
-          echo "${ env.SONAR_HOST_URL }"
-          echo "${ env.SCANNER_HOME }"
           sh '''${scannerHome}/bin/sonar-scanner \
                 -Dsonar.organization=roquebajosexto \
                 -Dsonar.projectKey=roquebajosexto_DOTT \
                 -Dsonar.sources=./cidr_convert_api/go/ \
                 -Dsonar.host.url=https://sonarcloud.io
-
          '''
         }
       }
