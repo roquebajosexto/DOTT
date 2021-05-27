@@ -7,6 +7,22 @@
 	"item": [
 		{
 			"name": "cidr-to-mask",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"pm.test(\"Getting a mask of 1\", function () {\r",
+							"  pm.expect(pm.response.json().output).to.eql(\"128.0.0.0\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -35,11 +51,27 @@
 		},
 		{
 			"name": "mask-to-cidr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"pm.test(\"Getting a 24 cidr from a mask\", function () {\r",
+							"  pm.expect(pm.response.json().output).to.eql(\"24\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://gyzk6dfc1g.execute-api.us-east-1.amazonaws.com/mask-to-cidr?value=2255.255.255.0",
+					"raw": "https://gyzk6dfc1g.execute-api.us-east-1.amazonaws.com/mask-to-cidr?value=255.255.255.0",
 					"protocol": "https",
 					"host": [
 						"gyzk6dfc1g",
@@ -54,7 +86,7 @@
 					"query": [
 						{
 							"key": "value",
-							"value": "2255.255.255.0"
+							"value": "255.255.255.0"
 						}
 					]
 				}
@@ -63,6 +95,22 @@
 		},
 		{
 			"name": "ip-validation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"pm.test(\"Verify a valid ip\", function () {\r",
+							"  pm.expect(pm.response.json().output).to.eql(\"true\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -91,6 +139,19 @@
 		},
 		{
 			"name": "root",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -113,6 +174,20 @@
 		},
 		{
 			"name": "health",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", () => {\r",
+							"  pm.expect(pm.response.code).to.be.oneOf([200,202]);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
