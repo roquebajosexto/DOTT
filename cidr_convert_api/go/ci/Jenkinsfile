@@ -33,7 +33,7 @@ pipeline {
           '''
           sh '''
           cd ./cidr_convert_api/go/
-          ${GOPATH}/bin/golint'
+          ${GOPATH}/bin/golint
           '''
       }
     }
