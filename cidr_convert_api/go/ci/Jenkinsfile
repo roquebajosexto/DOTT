@@ -34,6 +34,7 @@ pipeline {
         cd ./cidr_convert_api/go/
         go test -cover -coverprofile='cover.out'
         '''
+        echo 'Running Linting'
         sh 'golint ./cidr_convert_api/go/'
       }
     }
