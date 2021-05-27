@@ -34,10 +34,7 @@ pipeline {
         cd ./cidr_convert_api/go/
         go test -cover -coverprofile='cover.out'
         '''
-        sh '''
-          cd ./cidr_convert_api/go/
-          ${GOPATH}/bin/golint
-          '''
+        sh 'golint ./cidr_convert_api/go/'
       }
     }
     stage('SonarQube analysis') {
