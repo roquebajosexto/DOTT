@@ -40,7 +40,7 @@ pipeline {
           waitForQualityGate abortPipeline: true
       }
     }
-    stage('Test') {
+    stage('Unit Test') {
       steps {
         echo 'Running vetting'
         sh '''
@@ -53,6 +53,12 @@ pipeline {
         '''
         echo 'Running Linting'
         sh 'golint ./cidr_convert_api/go/'
+      }
+    }
+        stage('Functional testing') {
+      steps {
+        echo 'Running vetting'
+        sh 'newman run ./cidr_convert_api/go/Devops-Project.postman_collection.json --suppress-exit-code 1'
       }
     }
     stage('build') {

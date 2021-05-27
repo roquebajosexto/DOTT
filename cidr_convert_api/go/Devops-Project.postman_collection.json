@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "23148622-d61b-4a8c-8131-1acfd8588a1e",
+		"name": "Devops-Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cidr-to-mask",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gyzk6dfc1g.execute-api.us-east-1.amazonaws.com/cidr-to-mask?value=1",
+					"protocol": "https",
+					"host": [
+						"gyzk6dfc1g",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"cidr-to-mask"
+					],
+					"query": [
+						{
+							"key": "value",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mask-to-cidr",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gyzk6dfc1g.execute-api.us-east-1.amazonaws.com/mask-to-cidr?value=2255.255.255.0",
+					"protocol": "https",
+					"host": [
+						"gyzk6dfc1g",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"mask-to-cidr"
+					],
+					"query": [
+						{
+							"key": "value",
+							"value": "2255.255.255.0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ip-validation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gyzk6dfc1g.execute-api.us-east-1.amazonaws.com/ip-validation?value=255.255.248.01",
+					"protocol": "https",
+					"host": [
+						"gyzk6dfc1g",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"ip-validation"
+					],
+					"query": [
+						{
+							"key": "value",
+							"value": "255.255.248.01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gyzk6dfc1g.execute-api.us-east-1.amazonaws.com/",
+					"protocol": "https",
+					"host": [
+						"gyzk6dfc1g",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gyzk6dfc1g.execute-api.us-east-1.amazonaws.com/_health",
+					"protocol": "https",
+					"host": [
+						"gyzk6dfc1g",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"_health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
