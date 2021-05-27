@@ -23,21 +23,6 @@ pipeline {
           '''
       }
     }
-    stage('Test') {
-      steps {
-        echo 'Running vetting'
-        sh '''
-        cd ./cidr_convert_api/go/
-        go vet .'''
-        echo 'Running Unit testing'
-        sh '''
-        cd ./cidr_convert_api/go/
-        go test -cover -coverprofile='cover.out'
-        '''
-        echo 'Running Linting'
-        sh 'golint ./cidr_convert_api/go/'
-      }
-    }
     stage('SonarQube analysis') {
       steps {
         withSonarQubeEnv('sonarcloud') {
@@ -55,6 +40,21 @@ pipeline {
           waitForQualityGate abortPipeline: true
       }
     }
+    stage('Test') {
+      steps {
+        echo 'Running vetting'
+        sh '''
+        cd ./cidr_convert_api/go/
+        go vet .'''
+        echo 'Running Unit testing'
+        sh '''
+        cd ./cidr_convert_api/go/
+        go test -cover -coverprofile='cover.out'
+        '''
+        echo 'Running Linting'
+        sh 'golint ./cidr_convert_api/go/'
+      }
+    }
     stage('build') {
       steps {
         sh '''
@@ -67,10 +67,6 @@ pipeline {
     }
     stage('deploy') {
         steps {
-        //     sh '''
-        //   cd ./cidr_convert_api/go/
-        //   sudo docker-compose up -d --build
-        //   '''
         kubernetesDeploy(
                     configs: 'cidr_convert_api/go/goms.yml',
                     kubeconfigId: 'K8S',
