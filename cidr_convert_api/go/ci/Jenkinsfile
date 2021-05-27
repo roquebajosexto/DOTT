@@ -18,20 +18,23 @@ pipeline {
             cd ./cidr_convert_api/go/
             go get -u golang.org/x/lint/golint
           '''
+          sh '''
+            go get github.com/Pepegasca/goop
+          '''
       }
     }
     stage('Test') {
       steps {
-          echo 'Running vetting'
-          sh '''
-          cd ./cidr_convert_api/go/
-          go vet .'''
-          echo 'Running Unit testing'
-          sh '''
-          cd ./cidr_convert_api/go/
-          go test -cover -coverprofile='cover.out'
-          '''
-          sh '''
+        echo 'Running vetting'
+        sh '''
+        cd ./cidr_convert_api/go/
+        go vet .'''
+        echo 'Running Unit testing'
+        sh '''
+        cd ./cidr_convert_api/go/
+        go test -cover -coverprofile='cover.out'
+        '''
+        sh '''
           cd ./cidr_convert_api/go/
           ${GOPATH}/bin/golint
           '''
