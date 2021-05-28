@@ -55,7 +55,7 @@ pipeline {
         sh 'golint ./cidr_convert_api/go/'
       }
     }
-        stage('Functional testing') {
+    stage('Functional testing') {
       steps {
         echo 'Running vetting'
         sh 'newman run ./cidr_convert_api/go/Devops-Project.postman_collection.json --suppress-exit-code 1'
